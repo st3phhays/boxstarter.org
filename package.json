@@ -12,9 +12,15 @@
   },
   "homepage": "https://github.com/chocolatey/boxstarter.org#readme",
   "scripts": {
-    "choco-theme": "yarn dlx --quiet ts-node --skipIgnore node_modules/choco-theme/build/choco-theme.ts --repository=boxstarter"
+    "build-copy-theme": "npx --quiet ts-node --skipIgnore node_modules/@chocolatey-software/build-tools/build/copy-theme.ts boxstarter",
+    "build-purge-css": "npx --quiet ts-node --skipIgnore node_modules/@chocolatey-software/build-tools/build/purge-css.ts boxstarter",
+    "choco-theme": "yarn build-copy-theme && yarn build-purge-css",
+    "link-packages": "npx --quiet ts-node --skipIgnore node_modules/@chocolatey-software/build-tools/build/link.ts"
   },
   "devDependencies": {
-    "choco-theme": "1.4.1"
+    "@chocolatey-software/build-tools": "portal:/C:/source/choco-theme/packages/build-tools"
+  },
+  "dependencies": {
+    "@chocolatey-software/boxstarter": "portal:/C:/source/choco-theme/packages/boxstarter"
   }
 }
